@@ -23,6 +23,7 @@ public class FakeHttpLayer {
     List<HttpEntityStub.ResponseRule> httpResponseRules = new ArrayList<HttpEntityStub.ResponseRule>();
     HttpResponse defaultHttpResponse;
     private HttpResponse defaultResponse;
+    private boolean enabled = true;
 
     public HttpRequestInfo getLastSentHttpRequestInfo() {
         List<HttpRequestInfo> requestInfos = Robolectric.getFakeHttpLayer().getSentHttpRequestInfos();
@@ -156,6 +157,14 @@ public class FakeHttpLayer {
 
     public void clearPendingHttpResponses() {
         pendingHttpResponses.clear();
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
     }
 
     public static class RequestMatcherResponseRule implements HttpEntityStub.ResponseRule {
